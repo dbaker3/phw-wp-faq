@@ -6,14 +6,22 @@
 	
 */
 
+/*
+*  8-19-15 Modified by David Baker, Milligan College
+*  Original Project by wpbean, http://wpbean.com/wpb-advanced-faq
+*
+*  -Simplified & customized element layout for use with our theme
+*  -Added Lunr searching (@TODO)
+*  
+*/
 
 if ( !function_exists('wpb_af_shortcode_function') ){
 	function wpb_af_shortcode_function ($atts) {
 
 		extract(shortcode_atts(array(
 	      'post' 			=> -1,
-	      'order' 			=> 'DESC',
-	      'orderby' 		=> 'date',
+	      'order' 			=> 'ASC',
+	      'orderby' 		=> 'menu_order',
 	      'category'		=> '',
 	      'tags'			=> '',
 	      'theme'			=> 'flat', // ui, 
@@ -36,43 +44,21 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 
 		if ($wp_query->have_posts()){ 
 		?>
-		<div id="wpb_af_<?php echo $wpb_af_id; ?>" class="wpb_af_<?php echo $theme; ?>_theme">
-			<ul class="wpb_af_area">
-				<?php while ($wp_query->have_posts()) : $wp_query->the_post();?>
-					<?php $faq_content = get_the_content(); ?>
-					<li id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-						<a href="#"><?php the_title(); ?></a>
-						<?php if( $faq_content && $faq_content != '' ):?>
-							<ul>
-			                    <li><?php the_content(); ?></li>
-			                </ul>
-		            	<?php endif;?>
-					</li>
-			    <?php endwhile; ?>
-			</ul>
+		<script>var faq = [];</script>
+		<div>
+			<?php while ($wp_query->have_posts()) : $wp_query->the_post();?>
+				<?php $faq_content = get_the_content(); ?>
+				<div class="acc-list" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<a class="acc-list-category"><?php the_title(); ?></a>
+					<?php if( $faq_content && $faq_content != '' ):?>
+						<div class="acc-sublist">
+		                    <?php the_content(); ?>
+		                </div>
+		                <script>faq.push({ question: <?php $title = get_the_title(); echo json_encode($title); ?>, answer: <?php $content = get_the_content(); echo json_encode($content); ?> });</script>
+		           	<?php endif;?>
+				</div>
+		    <?php endwhile; ?>
 		</div>
-
-		<script type="text/javascript">
-		jQuery( function($) {  
-			$("#wpb_af_<?php echo $wpb_af_id; ?> > ul").navgoco({
-				<?php if( $theme == 'flat' ):?>
-		        caretHtml: '<i class="icon-wpb-af-plus"></i>',
-		        <?php endif;?>
-				accordion: <?php echo ( $close_previous == 'yes' ? 'true' : 'false' ); ?>,
-				openClass: 'wpb-submenu-indicator-minus',
-				save: true,
-				cookie: {
-					name: 'wpb_af',
-					expires: false,
-					path: '/'
-				},
-				slide: {
-					duration: 400,
-					easing: 'swing'
-				}
-		    });
-		});
-		</script>
 
 		<?php
 		}else{

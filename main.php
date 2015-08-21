@@ -1,16 +1,24 @@
 <?php
 
 /**
- * Plugin Name:       WPB Advanced FAQ
+ * Plugin Name:       PHW FAQ
  * Plugin URI:        http://wpbean.com/wpb-advanced-faq
- * Description:       Just another wordpress plugin
+ * Description:       FAQ plugin forked from WPB Advanced FAQ 
  * Version:           1.0
- * Author:            wpbean
- * Author URI:        http://wpbean.com/
+ * Author:            wpbean, dabaker
+ * Author URI:        https://github.com/dbaker3/
  * Text Domain:       wpb-advanced-faq
  * Domain Path:       /languages
  */
 
+/*
+*  8-19-15 Modified by David Baker, Milligan College
+*  Original Project by wpbean, http://wpbean.com/wpb-advanced-faq
+*
+*  Removed styles since will be using our own themes style. 
+*  Reformated displaying of shortcode to match the layout of accordions used by our theme.
+*  Removed cookie support to save open/closed state of faq items
+*/
 
 /**
  * If this file is called directly, abort. 
