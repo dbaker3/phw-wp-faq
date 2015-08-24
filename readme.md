@@ -2,7 +2,7 @@
 ### An FAQ WordPress plugin for the Milligan Libraries
 
 ## About
-Forked from WPB Advanced FAQ (https://wordpress.org/plugins/wpb-advanced-faq/). Implements Lunr.js in the shortcode to enable client-side search capabilities for the FAQ. Licensed under the GPL v2.0
+Forked from WPB Advanced FAQ (https://wordpress.org/plugins/wpb-advanced-faq/) by wpbean. Implements Lunr.js in the shortcode to enable client-side search capabilities for the FAQ. Licensed under the GPL v2.0
 
 ### Plugin Features
 
