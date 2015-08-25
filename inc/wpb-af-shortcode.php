@@ -46,7 +46,9 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 			var faq = [];
 		</script>
 		<div>
-			<input type="text" id="faq-search" placeholder="Search the FAQ">
+			<div class="welshimer-form">
+				<input type="text" id="faq-search" class="text" placeholder="Start typing your question">
+			</div>
 			<div id="faq-list">
 			<?php while ($wp_query->have_posts()) : $wp_query->the_post();?>
 				<?php $faq_content = get_the_content(); ?>
@@ -60,6 +62,7 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 		                	faq.push({ 
 		                		question: <?php $title = get_the_title(); echo json_encode($title); ?>, 
 		                		answer: <?php $content = get_the_content(); echo json_encode($content); ?>, 
+		                		tags: "<?php $tags = get_the_terms($post->ID, 'wpb_af_faq_tags', '', ' ', ''); if ($tags) foreach ($tags as $tag) echo $tag->name . ' '; ?>",
 		                		id: "<?php echo the_ID(); ?>" 
 		                	});
 		                </script>

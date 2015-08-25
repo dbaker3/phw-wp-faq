@@ -1,7 +1,10 @@
 jQuery(document).ready(function() {
 
+    //lunr.stopWordFilter.stopWords = {};
+    
     var idx = lunr(function () {
         this.field('question', { boost: 10 });
+        this.field('tags');
         this.field('answer');
     });
 
@@ -12,10 +15,10 @@ jQuery(document).ready(function() {
     var originalFAQList = jQuery("#faq-list").clone();
 
     var result;
-    jQuery("#faq-search").keydown(function() {
+    jQuery("#faq-search").keyup(function() {
         result = idx.search(jQuery(this).val());
 
-        if (result == "") {
+        if (jQuery("#faq-search").val() == "" || result == "") {
             jQuery("#faq-list").replaceWith(originalFAQList.clone());
             jQuery("#faq-list .acc-sublist").addClass("hidden");
         }
@@ -26,7 +29,7 @@ jQuery(document).ready(function() {
                     if (item.ref == q.id) {
                         addQAItem(q);
                     }
-                })
+                });
             });
     
         }
