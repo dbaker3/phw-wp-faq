@@ -38,14 +38,16 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 			'wpb_af_faq_tags'		=> $tags,
 		));
 
-		$wpb_af_id = rand(10,1000);
-
 		ob_start();
 
 		if ($wp_query->have_posts()){ 
 		?>
-		<script>var faq = [];</script>
+		<script>
+			var faq = [];
+		</script>
 		<div>
+			<input type="text" id="faq-search" placeholder="Search the FAQ">
+			<div id="faq-list">
 			<?php while ($wp_query->have_posts()) : $wp_query->the_post();?>
 				<?php $faq_content = get_the_content(); ?>
 				<div class="acc-list" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -54,10 +56,17 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 						<div class="acc-sublist">
 		                    <?php the_content(); ?>
 		                </div>
-		                <script>faq.push({ question: <?php $title = get_the_title(); echo json_encode($title); ?>, answer: <?php $content = get_the_content(); echo json_encode($content); ?> });</script>
+		                <script>
+		                	faq.push({ 
+		                		question: <?php $title = get_the_title(); echo json_encode($title); ?>, 
+		                		answer: <?php $content = get_the_content(); echo json_encode($content); ?>, 
+		                		id: "<?php echo the_ID(); ?>" 
+		                	});
+		                </script>
 		           	<?php endif;?>
 				</div>
 		    <?php endwhile; ?>
+		    </div>
 		</div>
 
 		<?php
