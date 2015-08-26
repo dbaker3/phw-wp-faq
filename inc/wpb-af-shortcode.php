@@ -47,6 +47,7 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 		</script>
 		<div>
 			<div class="welshimer-form">
+				<p>Search the FAQ</p>
 				<input type="text" id="faq-search" class="text" placeholder="Start typing your question">
 			</div>
 			<div id="faq-list">
@@ -69,6 +70,16 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 		           	<?php endif;?>
 				</div>
 		    <?php endwhile; ?>
+		    </div>
+		</div>
+		<div id="faq-alt-assist" class="hidden">
+		    <div class="libraryh3lp" jid="milliganlibrarys-queue@chat.libraryh3lp.com" style="display: none;">
+				<iframe src="https://us.libraryh3lp.com/chat/milliganlibrarys-queue@chat.libraryh3lp.com?skin=25022" frameborder="0" style="border: 0px; width: 100%; height: 300px;"></iframe>
+			</div>
+
+    		<div class="libraryh3lp" style="display: none;"> 
+     		   PUT YOUR OFFLINE OPTION HERE by inserting whatever HTML you want.
+      		  You might point to your e-mail ref service or to your 24/7 backup chat service.
 		    </div>
 		</div>
 
