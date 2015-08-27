@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-
+    
     //lunr.stopWordFilter.stopWords = {};
     
     var idx = lunr(function () {
@@ -32,11 +32,11 @@ jQuery(document).ready(function() {
             });
     
         }
-        // Show chat option of question isn't found
-//        if (jQuery("#faq-search").val() != "" && result == "" && !stopWordsOnly()) {
-//            jQuery("#faq-alt-assist").removeClass("hidden");
-//            clearFAQList();
-//        } else jQuery("#faq-alt-assist").addClass("hidden");
+        // Show chat option if question isn't found
+         if (jQuery("#faq-search").val() != "" && result == "" && !stopWordsOnly()) {
+        //     jQuery("#faq-alt-assist").removeClass("hidden");
+             clearFAQList();
+        } //else jQuery("#faq-alt-assist").addClass("hidden");
         addClickHandler();
     });
 
@@ -61,10 +61,9 @@ function stopWordsOnly() {
     searchqueryarray.pop(); console.log(searchqueryarray);
 
     for (var i = 0; i < searchqueryarray.length; i++) {
-        if (searchqueryarray.indexOf(lunr.stopWordFilter.stopWords[searchqueryarray[i]]) > -1) {
-            found = true;
+        if (searchqueryarray.indexOf(lunr.stopWordFilter.stopWords[searchqueryarray[i]]) == -1) {
+            return false;
         }
-        else return false;
     }
     return true;
 }

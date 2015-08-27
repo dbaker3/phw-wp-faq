@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 function wpb_af_adding_scripts() {
 	if ( !is_admin() ) {
-		wp_enqueue_script('wpb_af_lunr_script', plugins_url('assets/js/lunr.min.js', __FILE__), '', '0.5.12', true);
-		wp_enqueue_script('wpb_af_faqlunr_script', plugins_url('phw-faq.js', __FILE__), '', '0.1', true);
+		wp_enqueue_script('wpb_af_lunr_script', plugins_url('js/lunr.min.js', __FILE__), '', '0.5.12', true);
+		wp_enqueue_script('wpb_af_faqlunr_script', plugins_url('js/phw-faq.js', __FILE__), '', '0.1', true);
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wpb_af_adding_scripts' ); 

@@ -24,9 +24,6 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 	      'orderby' 		=> 'menu_order',
 	      'category'		=> '',
 	      'tags'			=> '',
-	      'theme'			=> 'flat', // ui, 
-	      'close_previous'	=> 'yes', // no
-		  
 	   ), $atts));
 	   
 		$wp_query = new WP_Query( array( 
@@ -42,9 +39,7 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 
 		if ($wp_query->have_posts()){ 
 		?>
-		<script>
-			var faq = [];
-		</script>
+		<script>var faq = [];</script>
 		<div>
 			<div class="welshimer-form">
 				<p>Search the FAQ</p>
@@ -72,17 +67,25 @@ if ( !function_exists('wpb_af_shortcode_function') ){
 		    <?php endwhile; ?>
 		    </div>
 		</div>
-		<div id="faq-alt-assist" class="hidden">
+		<div id="faq-alt-assist" class="" style="margin-top:2em;">
+
+		<!-- Custom chat widget or alternative contact method 
+			==================================================
+			
+			If you have a chat service or other method of contact, paste the HTML for that
+			service after his comment. It will show at the bottom of the FAQ listing and offer
+			an alternative way for users to find answers  -->
+		
 		    <div class="libraryh3lp" jid="milliganlibrarys-queue@chat.libraryh3lp.com" style="display: none;">
 				<iframe src="https://us.libraryh3lp.com/chat/milliganlibrarys-queue@chat.libraryh3lp.com?skin=25022" frameborder="0" style="border: 0px; width: 100%; height: 300px;"></iframe>
 			</div>
-
     		<div class="libraryh3lp" style="display: none;"> 
-     		   PUT YOUR OFFLINE OPTION HERE by inserting whatever HTML you want.
-      		  You might point to your e-mail ref service or to your 24/7 backup chat service.
+     		   Can't find an answer? Call us at 423-461-8703 or email us <a href="mailto:library@milligan.edu">library@milligan.edu</a>
 		    </div>
-		</div>
+		    
+		<!-- End of custom chat or alt contact method. All custom HTML should be above this line. -->
 
+		</div>
 		<?php
 		}else{
 			_e( '<h2 class="text-center">'.'No Post Found For FAQ.'.'</h2>', 'margo' );
